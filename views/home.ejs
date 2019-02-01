@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src = "/js/home.js"></script>
+  </head>
+
+  <body>
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="/home">sharepic</a>
+            </div>
+            <ul class="nav navbar-nav">
+              <li class="active">
+                <a href="/profile"><img src = '<%= user.facebook.thumbnail%>'></a>
+              </li>
+              <li><a href="/profile">
+                welcome : <%= user.local.username||user.facebook.username%></a></li>
+              </ul>
+              <button class = "btn navbar-btn"  data-toggle = "modal" data-target="#addPostModal" >add post</button></a>
+               <a href="/logout"><button class = "btn btn-signout navbar-btn">logout</button></a>
+          </div>
+      </nav>
+   
+    <dialog id = "likedialog">
+        <ol>
+        </ol>
+    </dialog>
+     
+  <!-- Modal -->
+  <div class="modal fade" id="addPostModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">ADD POST</h4>
+        </div>
+        <div class="modal-body">
+            <form action = "posts" method = "POST" enctype="multipart/form-data" id = "addPostForm">
+              story : <input type = "text" id = "story" name = "story">
+              <br/>
+              add pic : <input type = "file" id = "pic" name = "pic">
+              <br/>
+              <input type = "submit" value = "post">
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" role="dialog" id ="likeBox">
+      <div class="modal-dialog">
+      
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">LIKED BY :</h4>
+          </div>
+          <div class="modal-body" >
+              <ol class="list-group" >
+                  <div id="likeBoxModal" >
+
+                  </div>
+              </ol>            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+    
+      </div>
+  </div>
+               
+    <h3>posts : </h3>
+    <% if(!data||data.length <=0){%>
+    <h3>oops! no posts to show </h3>
+    <%}; 
+        if(data){
+          data.forEach(function(post,index){
+    %>
+    <div class="container" >
+        <strong><%= post.ownername %></strong> : added  on <%= post.date%>
+        <% if(post.ownerID == user._id){%>
+          <button onclick="deletePost('<%=post.id%>')">delete</button>
+        <%}%>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <p><%=post.story %></p>
+            <a href = '/posts'><img class = ".img-responsive" src = '<%=post.imgpath %>' alt="img not found"></a> <br/>
+            <% if(likedpost[post._id]){%>
+              <input type = "button" onclick = "unlikepost('<%=post._id%>','#ulp<%=index%>')" id = "ulp<%=index%>" value = "unlike "> 
+            <%} else{%>
+              <input type = "button" onclick = "likepost('<%=post.id%>','#lp<%=index%>')" id = "lp<%=index%>" value = "like">  
+            <%}%>             
+            <a onclick="showlike('<%=post._id%>')" data-toggle = "modal" data-target="#likeBox" ><strong> people who likes this</strong></a> 
+            <br/>
+            <ol class="list-group">
+                <li class = "list-group-item">
+                  <form action = "/posts/<%=post.id%>/comments" method = "POST">
+                    <textarea class="form-control" rows="2"  name="commentText"></textarea>
+                    <input type = "submit" class="btn-success" value = "addcomment">
+                  </form>
+                   <button  onclick="showComment('<%= post._id %>')">show comments</button>
+                </li>
+            </ol>
+            <ol class="list-group">
+              <div id ="c<%=post.id%>"></div>
+            </ol>
+          </div>
+        <div >
+          <br/><br/><br/>
+
+          <% })}; %>
+        </div>
+    <br>
+
+   
+    <script src = "/js/updatePost.js"></script>
+    <script src= '/js/deletePost.js'></script>
+    <script src='/js/addPost.js'></script>
+    </body>
+</html>

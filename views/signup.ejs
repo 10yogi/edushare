@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>signup</title>
+  </head>
+  <body>
+      <% if (message.length > 0) { %>
+        <div style="color:red;"><%= message %></div>
+      <% } %>
+      <form action="/signup" method="post">
+        <div >
+            <label>Email</label>
+            <input type="email"  name="email">
+        </div>
+        <div>
+            <label>Password</label>
+            <input type="password" name="password">
+        </div>
+        <button type="submit">Signup</button>
+    </form>
+    <p>Already have an account? <a href="/login">Login</a></p>
+    <p>Or go <a href="/">home</a>.</p>
+
+  </body>
+</html>

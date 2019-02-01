@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>login</title>
+  </head>
+  <body>
+    
+    <% if(message.length > 0){ %>
+    <div style="color : red;"><%= message %></div>
+    <% } %>
+
+    <form action = "/login" method = "post">
+      <div>
+          <label>Email : </label> <input type = "email" name = "email"/>
+      </div>
+      <div>
+          <label>Password : </label> <input type = "password" name = "password"/>
+      </div>
+      <button type = "submit" >Login</button>
+      <p>Need an account?<a href = "/signup">Signup</a>
+      <p>Or go<a href = "/">home</a>.</p>
+    </form>
+  </body>
+</html>
