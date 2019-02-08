@@ -1,3 +1,12 @@
+$(document).ready(()=>{
+  $('.btn-like').click(()=>{
+    console.log($(this).val());/*
+    if($(this).val()=='like')
+      $(this).val('unlike');
+    else
+      $(this).val('like');*/
+  });
+});
 function showlike(postid){
   $(document).ready(()=>{
     console.log("loaded");
@@ -8,6 +17,7 @@ function showlike(postid){
   });
 };
 
+
 function showComment(postid){
   $(document).ready(()=>{
     $.get('/posts/'+postid+'/comments',(data)=>{
@@ -15,24 +25,27 @@ function showComment(postid){
     },'html');
   });
 };
-
-
    
 function likepost(postid,bid){
   let xhttp = new XMLHttpRequest();
   let url = "/posts/"+postid+"/likes";
   xhttp.open('POST', url, true);  
  
+  xhttp.send();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 ){
       if(this.status==200){
         $(document).ready(()=>{
-          $(bid).attr('value',"unlike");
-        });
-      }              
-    }
+          $("#u"+bid).show();
+          $("#l"+bid).hide();
+         
+        })
+        return;
+      }else{
+        return window.alert(this.responseText);
+      }  
+    }              
   };
-  xhttp.send();
 }
         
    
@@ -41,16 +54,19 @@ function unlikepost(postid,bid){
   let xhttp = new XMLHttpRequest();
   let url = "/posts/"+postid+"/likes";
   xhttp.open('DELETE', url, true);  
+  xhttp.send();
 
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 ){
-      if(this.status==200){      
+      if(this.status==200){
         $(document).ready(()=>{
-          $(bid).attr('value',"like");
-        });
-      } 
+          $("#u"+bid).hide();
+           $("#l"+bid).show();
+        })    
+        return;      
+      }else
+        return window.alert(this.responseText);
     }
   };
-  xhttp.send();
 }
       

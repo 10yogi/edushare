@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const passport = require('../config/passport-config');
-const routerController = require('../controllers/router/');
+const routesController = require('../controllers/router/');
 
 function isLoggedIn (req,res,next){
    if(req.isAuthenticated())
@@ -18,15 +18,18 @@ function nocache(req,res,next){
 }
 
 router.get('/',(req,res)=>{
-   if(req.isAuthenticated()){
+   if(req.isAuthenticated())
      return res.redirect('/home');
-   }
+   else
    res.render('index');
 });
 
 
 router.get('/signup',(req,res)=>{
-   res.render('signup',{message: req.flash('signupMessage')});
+   if(req.isAuthenticated())
+      res.redirect('/home');
+   else
+      res.render('signup',{message: req.flash('signupMessage')});
 }); 
 
 router.post('/signup',passport.authenticate('local-signup',{
@@ -37,7 +40,10 @@ router.post('/signup',passport.authenticate('local-signup',{
 
 
 router.get('/login',(req,res)=>{
-   res.render('login',{message : req.flash('loginMessage')});
+   if(req.isAuthenticated())
+      res.redirect('/home');
+   else
+     res.render('login',{message : req.flash('loginMessage')});
 });
 
 router.post('/login',passport.authenticate('local-login',{
@@ -53,15 +59,15 @@ router.get('/logout',(req,res)=>{
 });
 
 
-router.get('/home',isLoggedIn,nocache,routerController.gotoHome);
-router.get('/profile',isLoggedIn,nocache,routerController.gotoProfile);
+router.get('/home',isLoggedIn,nocache,routesController.home);
+router.get('/profile',isLoggedIn,nocache,routesController.profile);
 
 
 router.use('/oauth',require('./oauth'));
 router.use('/posts',isLoggedIn,nocache,require('./posts'));
 
 router.all('*',(req,res)=>{
-   res.status(404).send({msg:'not found'});
+   res.redirect('/')
 });
 
 module.exports = router;

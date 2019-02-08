@@ -15,15 +15,15 @@ var addLike = (req,res)=>{
         ownername : req.user.local.username||req.user.facebook.username,
         date : Date.now(),
       });
-      like.save().then(result => {
-        console.log(result);
-        if(result)
-        res.status(200).json({message:"liked"});
-      })    
+      return like.save()
     }
     else
-     return res.status(400).json({message:"already"});
-  })
+    return res.status(404).json({error:"already liked"});
+  }).then(result => {
+    console.log(result);
+    if(result)
+    return res.status(200).json({message:"liked"});
+  })    
   .catch(err=>{
     res.status(400).json(err.message);
   });

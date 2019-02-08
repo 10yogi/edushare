@@ -1,7 +1,8 @@
 
-const gotoProfile = require('./gotoProfile');
-const gotoHome = require('./gotoHome');
+const profile = require('./profile');
+const home = require('./home');
+
 module.exports = {
-  gotoProfile :gotoProfile,
-  gotoHome:gotoHome,
+  profile :profile,
+  home:home,
 };

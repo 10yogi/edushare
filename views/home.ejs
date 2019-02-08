@@ -81,7 +81,8 @@
     
       </div>
   </div>
-               
+
+  <div class="container" >               
     <h3>posts : </h3>
     <% if(!data||data.length <=0){%>
     <h3>oops! no posts to show </h3>
@@ -89,41 +90,35 @@
         if(data){
           data.forEach(function(post,index){
     %>
-    <div class="container" >
-        <strong><%= post.ownername %></strong> : added  on <%= post.date%>
-        <% if(post.ownerID == user._id){%>
-          <button onclick="deletePost('<%=post.id%>')">delete</button>
-        <%}%>
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <p><%=post.story %></p>
-            <a href = '/posts'><img class = ".img-responsive" src = '<%=post.imgpath %>' alt="img not found"></a> <br/>
-            <% if(likedpost[post._id]){%>
-              <input type = "button" onclick = "unlikepost('<%=post._id%>','#ulp<%=index%>')" id = "ulp<%=index%>" value = "unlike "> 
-            <%} else{%>
-              <input type = "button" onclick = "likepost('<%=post.id%>','#lp<%=index%>')" id = "lp<%=index%>" value = "like">  
-            <%}%>             
-            <a onclick="showlike('<%=post._id%>')" data-toggle = "modal" data-target="#likeBox" ><strong> people who likes this</strong></a> 
-            <br/>
+    <strong><%= post.ownername %></strong> : added  on <%= post.date%>
+      <% if(post.ownerID == user._id){%>
+        <button onclick="deletePost('<%=post.id%>')">delete</button>
+      <%}%>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <p><%=post.story %></p>
+          <a href = '/posts'><img class = ".img-responsive" src = '<%=post.imgpath %>' alt="img not found"></a> <br/>
+          <div class="panel panel-body">
+              <button class="btn-info" style="display: <%=likedpost[post._id]?'block':'none'%> ;" onclick = "unlikepost('<%=post._id%>','<%=index%>')" id = "u<%=index%>" >unlike</button>
+              <button style="display: <%=likedpost[post._id]?'none':'block'%>;" onclick="likepost('<%=post._id%>','<%=index%>')" id = "l<%=index%>"> like </button>
+              <br/>
+              <a onclick="showlike('<%=post._id%>')" data-toggle = "modal" data-target="#likeBox" ><strong> people who likes this</strong></a>       
+          </div>
+          <button  onclick="showComment('<%= post._id %>')">comments</button>
             <ol class="list-group">
-                <li class = "list-group-item">
+              <div id ="c<%=post.id%>"></div>
+              <li class = "list-group-item">
                   <form action = "/posts/<%=post.id%>/comments" method = "POST">
                     <textarea class="form-control" rows="2"  name="commentText"></textarea>
                     <input type = "submit" class="btn-success" value = "addcomment">
                   </form>
-                   <button  onclick="showComment('<%= post._id %>')">show comments</button>
                 </li>
-            </ol>
-            <ol class="list-group">
-              <div id ="c<%=post.id%>"></div>
-            </ol>
-          </div>
-        <div >
-          <br/><br/><br/>
-
-          <% })}; %>
+            </ol>   
         </div>
-    <br>
+      <div >
+          <br/><br/>
+        <% })}; %>
+  </div>
 
    
     <script src = "/js/updatePost.js"></script>
