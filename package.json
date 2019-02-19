@@ -35,5 +35,8 @@
     "passport-local": "^1.0.0",
     "react": "^16.8.2",
     "react-dom": "^16.8.2"
+  },
+  "engines":{
+    "node":"8.10.0"
   }
 }
