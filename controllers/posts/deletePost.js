@@ -1,40 +1,36 @@
-
+const User = require('../../models/user');
 const Post = require('../../models/post');
 const Comment = require('../../models/comment');
-const Like = require('../../models/like');
-
+const Reply = require('../../models/reply');
 const fs = require('fs');
 
-var deletePost = (req,res,next)=>{
-  const id = req.params.postid;
-  Post.findOne({
-    _id:id,
-    ownerID:req.user._id,
-  }).exec()
-  .then(post=>{
-    fs.unlink(post.imgpath,()=>Post.deleteOne({_id:id})
-      .exec()
-      .then(result=>{
-        return Comment.deleteMany({
-          postid:post._id
-        })
-      })
-      .then(result=>{
-        return Like.deleteMany({
-          postid:post._id
-        })
-      })
-      .then(result=>{
-        return res.status(200).json({message:"post deleted"});
-      })
-      .catch(err=>{
-        console.log(err);
-        return res.status(400).json(err)
-      }));
+var deletePost = (req, res, next) => {
+  let post;
+  Post.findOneAndDelete({ _id: req.params.postid, _user: req.user._id })
+  .then(result => {
+    post = result;
+    if(!result._id){
+      return res.status(500).json({msg:"you are not author of post bad request"});
+    };    
+    fs.unlinkSync(post.imgpath);
+    return Comment.deleteMany({ _id: { $in: post.comments } });
   })
-  .catch(err=>{
-    console.log(err);
-    return res.status(404).json({msg:"post not found"});
+  .then(result=>{
+    return Reply.deleteMany({ _post:post._id});
+  })
+  .then(result=>{
+    return User.updateOne({ _id: post._user }, {
+      $pull: { mylikes: post._id, myposts: post._id },
+    });
+  })
+  .then(result=>{
+    return res.status(200).json({
+      msg: "post deleted",
+    });
+  })
+  .catch(err => {
+      console.log(JSON.stringify(err));
+      return res.status(404).json({ msg: "post not found" });
   });
 }
 

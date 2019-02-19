@@ -2,28 +2,20 @@ const Post = require('../../models/post');
 
 
 var updatePost = (req,res,next)=>{
-  const id = req.params.userId;
-  if(!id){
-    return res.status(400).json({message:"id is required"});
-  }
-  if(!req.body.name){
-    return res.status(400).json({message:"name is required"});
-  }
-  if(!req.body.age){
-    return res.status(400).json({message:"age is required"});
-  }
-  Post.updateOne({_id:id},{$set : {
-    story : req.body.story,
-    age: req.body.age
-  }})
-  .then(result=>{
-    res.status(200).json({
-      message : 'post updated'
-    });
-  })
-  .catch(err=>{
-    res.status(400).json(err);
-  })
-};
+    Post.updateOne({
+      _id: req.params.postid,
+      _user: req.user._id
+    }, {
+        $set: { story: req.body.editText, date: Date.now() }
+      }).then(result => {
+       return res.status(200).json({
+          message: "post story updated",
+          comment: JSON.stringify(result)
+        });
+      })
+      .catch(err => {
+        return res.status(400).json(err.message);
+      });
+  };
 
 module.exports = updatePost;

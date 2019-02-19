@@ -7,7 +7,7 @@ var login =   (User)=>{
     passReqToCallback : true
   },
   (req,email,password,done)=>{
-    User.findOne({'local.username':email},(err,user)=>{
+    User.findOne({'username':email},(err,user)=>{
       if(err) return done(err);
       if(!user)
         return done(null,false,req.flash('loginMessage','No user found'));

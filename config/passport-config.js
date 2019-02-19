@@ -7,13 +7,11 @@ var facebookStrategy = require('./strategies/facebook-oauth');
 
 passport.serializeUser((user,done)=>{
   done(null,user._id);
-  console.log(user + " is serialzed");
 });
 
 passport.deserializeUser((id,done)=>{
-  console.log("user is deserialize user");
   User.findById(id).then(user =>{
-    console.log("done");
+  
     done(null,user);   
   });  
 });

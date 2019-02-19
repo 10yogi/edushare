@@ -7,12 +7,12 @@ module.exports = function (User,keys){
     clientSecret:keys.facebook.secret
   },
   (acessToken,refreshToken,profile,done) => {
-    console.log(profile._json);
+    // console.log(profile._json);
     //check is user already exist in database
     /*User.findOne({'facebook.facebookId':profile.id}).then((user)=>{
       if(user){
         //already have user
-        console.log('user is : ',user); 
+        // console.log('user is : ',user); 
         done(null,user);
       }else{
         //if not
@@ -23,7 +23,7 @@ module.exports = function (User,keys){
         
         newUser.save()
         .then(res=>{
-          console.log(`new facebook login created : ${newUser}`);
+          // console.log(`new facebook login created : ${newUser}`);
           done(null,newUser);
         })
         .catch(err=>{

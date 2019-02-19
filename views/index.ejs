@@ -2,12 +2,29 @@
 <html>
   <head>
     <title>login</title>
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="/public/css/bootstrap-social.css">
     <script></script>
   </head>
   <body>
-    <a href = "/oauth/facebook"><button>login with facebook</button></a><br/>
-    <a href = "/login"><button>login</button></a><br/>
-    <a href = "/signup"><button>sign up </button></a><br/>
+    <div class="container">
+
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="/home">sharepic</a>
+          </div>
+      
+         </div>
+      </nav>
+    </div>
+    <div class="container">
+      <br/><br/><br/>
+      <a href="/login" class="btn btn-default">login</a><br />
+      <a href="/signup" class="btn btn-default">sign up </a><br />
+      <a href="/oauth/facebook" class="btn  btn-social btn-facebook"><span class="fa fa-facebook"></span>login with
+        facebook</a>
+    </div>
+    
   </body>
 </html>

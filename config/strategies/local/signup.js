@@ -9,18 +9,18 @@ var signup =  (User)=>{
   (req,email,password,done)=>{  
     //User.findOne wont fire unless data is sent back
     //process.nextTick(function(){
-        User.findOne({'local.username':email},(err,user)=>{
+        User.findOne({'username':email},(err,user)=>{
           if(err){return done(err);}
           if(user){
-            return done(null,false,req.flash('signupMessage','that email is already taken.'));
+            return done(null,false,req.flash('signupMessage','email already exist!'));
           }else{
             var newUser = new User();
-            newUser.local.username = email;
-            console.log(password);
             newUser.local.password = newUser.generateHash(password);     
+            newUser.username = email;
             newUser.save(function(err){
               if(err)
                 throw err;
+              // console.log(newUser);
               return done(null,newUser);
             });
           }

@@ -54,7 +54,7 @@ const routes = require('./routes');
 app.use(routes);
 
 app.listen(port,()=>{
-  console.log(`magic happens on port ${port}`);
+  // console.log(`magic happens on port ${port}`);
 });
 
 module.exports = app;

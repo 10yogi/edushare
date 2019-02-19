@@ -1,26 +1,55 @@
 
-   
-  <ol class="list-group">
-      <% comments.forEach((comment)=>{%>
-        <li class = "list-group-item">
-            <span><%=comment.username%></span>
-            <span class = "badge"><%=comment.date%></span> 
-            <%if(userID == comment.userID){%>
-              <a >delete</a>
-              <a >edit</a>
-            <%}%>
-            <br/>
-          <span><%=comment.text%></span>
-          <a>reply</a>
-            <div class="panel panel-default">
-              <div class="panel panel-body">
-                  <ol class="list-group">
-                      <li class="list-group-item">wow! you are</li>
-                  </ol>
-              </div>
-              
+  <div id="like<%=post.id%>">
+      <li><strong onclick="showComment('<%= post._id %>')">comments |
+          <%=post.comments.length%></strong></li>
+      <br/>
+          <div class="input-group">
+            <span class="input-group-addon">comment</span>
+            <div class="row">
+              <div class="col-md-9"><textarea class="form-control col-md-4" id="<%=post.id%>#ta" maxlength="200"
+                  placeholder="write comment here...(max char 400)"></textarea></div>
+              <div class="col-md-3"><button onclick="addComment('<%=post.id%>')" class="btn btn-info" >post</button></div>
             </div>
-        </li>
+          </div>
+      <br/>
+
+      <% post.comments.forEach((comment)=>{%>
+         
+      <div class="input-group">
+        <span class="input-group-addon"><strong><%=comment._user.username%></strong></span>
+        <div class="row">
+          <div class="col-md-9"><textarea disabled="true" class="form-control col-md-4"><%=comment.text%></textarea></div>
+    
+            <div class="dropdown">
+              <span class="btn btn-default dropdown-togle" data-toggle="dropdown">
+                <p class="caret"></p>
+              </span>
+              <ul class="dropdown-menu">
+                <%if(user._id.toString() === comment._user._id.toString()){%>
+                <li><strong onclick="editComment('<%=comment._post%>','<%=comment._id%>')" data-toggle="modal"
+                    data-target="#editBox">edit</strong></li>
+                  <li><strong onclick="deleteComment('<%= post.id %>','<%= comment.id %>')">delete</strong></li>
+                <%}%>
+              </ul>
+            </div> 
+          </div>  
+        </div>
+      </div>
+  
+
+          <div id="r<%=comment._id%>">
+                  <div class="row">
+                    <div class="col-md-2">
+                      <h><%=comment.date.toDateString()%></h>
+                    </div>
+                    <div class="col-md-2">
+                      <strong onclick="showReply('<%=post._id%>','<%= comment._id %>')">replies| <%=comment.replies.length%> </strong>
+                    </div>
+                  </div>
+          </div>
+
+    
+      </br>
       <% }); %>
   </ol>
   
