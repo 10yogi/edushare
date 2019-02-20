@@ -4,22 +4,31 @@
     <title>signup</title>
   </head>
   <body>
-      <% if (message.length > 0) { %>
-        <div style="color:red;"><%= message %></div>
-      <% } %>
-      <form action="/signup" method="post">
-        <div >
-            <label>username</label>
-            <input type="text" minlength="3"  name="email">
-        </div>
-        <div>
-            <label>Password</label>
-            <input type="password" minlength="3" name="password">
-        </div>
-        <button type="submit">Signup</button>
-    </form>
-    <p>Already have an account? <a href="/login">Login</a></p>
-    <p>Or go <a href="/">home</a>.</p>
+    <div class="container">
+      <div class="panel panel-default">
+        <div calss="panel-body">
+          <% if (message.length > 0) { %>
+          <div style="color:red;"><%= message %></div>
+          <% } %>
+          <form action="/signup" method="post">
+            <div>
+              <label>username</label>
+              <input type="text" minlength="3" name="email">
+            </div>
+            <div>
+              <label>Password</label>
+              <input type="password" minlength="3" name="password">
+            </div>
+            <button type="submit">Signup</button>
+          </form>
+          <p>Already have an account? <a href="/login">Login</a></p>
+          <p>Or go <a href="/">home</a>.</p>
 
+        </div>
+    
+      </div>
+    </div>
+
+    
   </body>
 </html>
