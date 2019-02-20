@@ -5,9 +5,10 @@ function showlike(postid){
     let url = "/posts/"+postid+"/likes";
     $.get(url,(data)=>{
       $('#likeBoxModal').html(data);
+      $('#likeBox').modal('toggle');
     },'html');
 
-    $('#likeBox').modal('toggle');
+  
   });
 };
 
