@@ -135,7 +135,7 @@
     </div>
   </div>
 
-  <p><%=post.story %></p>
+  <p style="font-size:18px;"><%=post.story %></p>
 
   
     <a href='/posts'><img class=".img-responsive" src='<%=post.imgpath %>' alt="img not found"></a> <br />
@@ -145,7 +145,7 @@
                     <%}else{%>
                     <li onclick="likepost('<%=post._id%>')" class="fa fa-thumbs-up" style="font-size:30px;color:black" />
                     <%}%>
-    <li><strong onclick="showlike('<%=post._id%>')" data-toggle="modal" data-target="#likeBox"><%=post.likes.length%> people
+    <li><strong onclick="showlike('<%=post._id%>')"  data-target="#likeBox"><%=post.likes.length%> people
         like this</strong></li>
 </div>
 

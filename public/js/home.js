@@ -16,6 +16,7 @@ function likepost(postid){
       //window.alert(data);
       $('#like' + postid).html(data);
     }, 'html');
+    $('#likeBox').modal('toggle');
   });
 }
 function unlikepost(postid) {
