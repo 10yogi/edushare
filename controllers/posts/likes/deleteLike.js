@@ -12,7 +12,7 @@ var deleteLike = (req,res,next)=>{
                   $pull: { likes: req.user._id }
                 },
                 {
-                  returnOriginal:false
+                  new:true
                 }
               )
   }).then( result=>{

@@ -11,7 +11,7 @@ var addLike = (req,res)=>{
   .then(result=>{
     return Post.findOneAndUpdate({ _id: req.params.postid }, {
       $addToSet: { likes: req.user._id }
-    },{returnOriginal:false})
+    },{new:true})
   }).then(post=>{
     // console.log("result"+post);
     return res.status(200).render('addlike',{post:post});
