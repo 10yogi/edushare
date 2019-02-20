@@ -23,12 +23,13 @@
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="/home" style="font-style:italic;">picstick</a>
+        <div class = row>
+<a  class="navbar-brand"href="/home"><img style="width:30px;height:30px; " src='/favicon.ico'></a>
+<a class="navbar-brand " href="/home" style="font-style:italic;">picstick</a>
+        </div>
       </div>
       <ul class="nav navbar-nav">
-        <li class="active">
-          <a href="/profile"><img size = "height:40px; widith:30px;"src='/favicon.ico'></a>
-        </li>
+  
         <li><a href="/profile">
             welcome : <%= user.username%></a></li>
       </ul>
