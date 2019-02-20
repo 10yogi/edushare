@@ -21,8 +21,8 @@ app.use('/public',express.static(path.join(__dirname,'./public')));
 app.use(express.static(path.join(__dirname,'./public')));
 
 mongoose.connect(keys.mongodb.dbURI,{
-  useNewUrlParser : true,
-  useCreateIndex:true,
+  useNewUrlParser:true,
+  useCreateIndex:true
 });
 
 
@@ -54,7 +54,7 @@ const routes = require('./routes');
 app.use(routes);
 
 app.listen(port,()=>{
-  // console.log(`magic happens on port ${port}`);
+   console.log(`magic happens on port ${port}`);
 });
 
 module.exports = app;
