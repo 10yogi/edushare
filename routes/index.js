@@ -21,7 +21,7 @@ router.get('/',(req,res)=>{
    if(req.isAuthenticated())
      return res.redirect('/home');
    else
-   res.render('index');
+      res.render('index', { message: req.flash('loginMessage') });
 });
 
 

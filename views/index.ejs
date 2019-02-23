@@ -14,17 +14,36 @@
           <div class="navbar-header">
             <a class="navbar-brand" href="/home">picstick</a>
           </div>
+          <a href="/signup" class="btn btn-default">sign up </a><br />
+
       
          </div>
       </nav>
+      <br/><br/><br/><br/>
+      <br/><br/><br/><br/>
+        <br /><br /><br /><br />
+      <br /><br /><br /><br />
+      <% if(message.length > 0){ %>
+      <div style="color : red;"><%= message %></div>
+      <% } %>
+      <div class="panel panel-default">
+        <div calss="panel-body">
+          <form action="/login" method="post">
+            <div>
+              <label>username </label> <input type="text" minlength="3" name="email" />
+            </div>
+            <div>
+              <label>Password : </label> <input type="password" minlength="3" name="password" />
+            </div>
+            <button type="submit">Login</button>
+            <p>Need an account?<a href="/signup">Signup</a>
+      
+          </form>
+        </div>
+      
+      </div>
     </div>
-    <div class="container">
-      <br/><br/><br/>
-      <a href="/login" class="btn btn-default">login</a><br />
-      <a href="/signup" class="btn btn-default">sign up </a><br />
-     <!--<a href="/oauth/facebook" class="btn  btn-social btn-facebook"><span class="fa fa-facebook"></span>login with
-        facebook</a>--> 
-    </div>
+    
     
   </body>
 </html>

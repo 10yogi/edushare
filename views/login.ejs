@@ -1,32 +1,52 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>login</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    
-  </head>
-  <body>
-  <div class="container"><% if(message.length > 0){ %>
+
+<head>
+  <title>login</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/public/css/bootstrap-social.css">
+  <script></script>
+</head>
+
+<body>
+  <div class="container">
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/home">picstick</a>
+        </div>
+        <a href="/signup" class="btn btn-default">sign up </a><br />
+
+
+      </div>
+    </nav>
+    <br /><br /><br /><br />
+    <br /><br /><br /><br />
+    <br /><br /><br /><br />
+    <br /><br /><br /><br />
+    <% if(message.length > 0){ %>
     <div style="color : red;"><%= message %></div>
     <% } %>
     <div class="panel panel-default">
       <div calss="panel-body">
-        <form action = "/login" method = "post">
+        <form action="/login" method="post">
           <div>
-              <label>username </label> <input type = "text" minlength="3" name = "email"/>
+            <label>username </label> <input type="text" minlength="3" name="email" />
           </div>
           <div>
-              <label>Password : </label> <input type = "password" minlength="3" name = "password"/>
+            <label>Password : </label> <input type="password" minlength="3" name="password" />
           </div>
-          <button type = "submit" >Login</button>
-          <p>Need an account?<a href = "/signup">Signup</a>
-          <p>Or go<a href = "/">home</a>.</p>
+          <button type="submit">Login</button>
+          <p>Need an account?<a href="/signup">Signup</a>
+
         </form>
       </div>
-   
+
     </div>
-    </div>
-     </body>
+  </div>
+
+
+</body>
+
 </html>

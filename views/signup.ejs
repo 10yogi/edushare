@@ -7,31 +7,50 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   </head>
   <body>
-    <div class="container">
-
-      <div class="panel panel-default">
-        <div calss="panel-body">
-          <% if (message.length > 0) { %>
-          <div style="color:red;"><%= message %></div>
-          <% } %>
-          <form action="/signup" method="post">
-            <div>
-              <label>username</label>
-              <input type="text" minlength="3" name="email">
+      <div class="container">
+      
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="/home">picstick</a>
             </div>
-            <div>
-              <label>Password</label>
-              <input type="password" minlength="3" name="password">
-            </div>
-            <button type="submit">Signup</button>
-          </form>
-          <p>Already have an account? <a href="/login">Login</a></p>
-          <p>Or go <a href="/">home</a>.</p>
+            <a href="/login" class="btn btn-default">login </a><br />
+      
+      
+          </div>
+        </nav>
+        <br /><br /><br /><br />
+        <br /><br /><br /><br />
+        <br /><br /><br /><br />
+        <br /><br /><br /><br />
+        <% if(message.length > 0){ %>
+        <div style="color : red;"><%= message %></div>
+        <% } %>
+        <div class="panel panel-default">
+          <div calss="panel-body">
+              <% if (message.length > 0) { %>
+              <div style="color:red;"><%= message %></div>
+              <% } %>
+              <form action="/signup" method="post">
+                <div>
+                  <label>username</label>
+                  <input type="text" minlength="3" name="email">
+                </div>
+                <div>
+                  <label>Password</label>
+                  <input type="password" minlength="3" name="password">
+                </div>
+                <button type="submit">Signup</button>
+              </form>
+              <p>Already have an account? <a href="/login">Login</a></p>
+              <p>Or go <a href="/">home</a>.</p>
 
+          
+          </div>
+      
         </div>
-    
       </div>
-    </div>
+   
 
     
   </body>

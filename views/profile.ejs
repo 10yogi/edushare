@@ -7,10 +7,15 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.sstatic.net/Shared/stacks.css?v=0dba668d3e12">
+  <script src="https://cdn.sstatic.net/Js/stub.en.js?v=2c8c919d5fbf"></script>
+
   <script src="/js/home.js"></script>
 </head>
 
 <body>
+
+
 
 
   <% 
@@ -23,12 +28,13 @@
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="/home">picstick</a>
+        <div class=row>
+          <a class="navbar-brand" href="/home"><img style="width:30px;height:30px; " src='/favicon.ico'></a>
+          <a class="navbar-brand " href="/home" style="font-style:italic;">picstick</a>
+        </div>
       </div>
       <ul class="nav navbar-nav">
-        <li class="active">
-          <a href="/profile"><img src='/favicon.ico'></a>
-        </li>
+
         <li><a href="/profile">
             welcome : <%= user.username%></a></li>
       </ul>
@@ -42,7 +48,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
             <h4 class="modal-title">ADD POST</h4>
           </div>
           <div class="modal-body">
@@ -77,6 +83,9 @@
               <br />
               <input type="submit" value="EDIT">
             </form>
+
+
+
 
           </div>
           <div class="modal-footer">
@@ -138,7 +147,7 @@
     </div>
   </div>
 
-  <p><%=post.story %></p>
+  <p style="font-size:18px;"><%=post.story %></p>
 
 
             <a href='/posts'><img class=".img-responsive" src='<%=post.imgpath %>' alt="img not found"></a> <br />
@@ -148,8 +157,7 @@
               <%}else{%>
               <li onclick="likepost('<%=post._id%>')" class="fa fa-thumbs-up" style="font-size:30px;color:black" />
               <%}%>
-    <li><strong onclick="showlike('<%=post._id%>')"  data-target="#likeBox"><%=post.likes.length%>
-              people
+    <li><strong onclick="showlike('<%=post._id%>')" data-target="#likeBox"><%=post.likes.length%> people
               like this</strong></li>
             </div>
 
