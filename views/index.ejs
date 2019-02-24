@@ -11,11 +11,15 @@
 
       <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
-          <div class="navbar-header">
-            <a class="navbar-brand" href="/home">picstick</a>
-          </div>
-          <a href="/signup" class="btn btn-default">sign up </a><br />
+     <div class="navbar-header">
+          <div class=row>
+            <a class="navbar-brand" href="/home"><img style="width:30px;height:30px; " src='/favicon.ico'></a>
+            <a class="navbar-brand " href="/home" style="font-style:italic;">picstick</a>
+            <a href="/signup" class="btn btn-default">sign up </a><br />
 
+          </div>
+        </div> 
+   
       
          </div>
       </nav>
@@ -30,7 +34,7 @@
         <div calss="panel-body">
           <form action="/login" method="post">
             <div>
-              <label>username </label> <input type="text" minlength="3" name="email" />
+              <label>username : </label> <input type="text" minlength="3" name="email" />
             </div>
             <div>
               <label>Password : </label> <input type="password" minlength="3" name="password" />

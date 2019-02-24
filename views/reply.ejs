@@ -32,9 +32,9 @@
     </div>
 
     <div class="dropdown">
-      <span class="btn btn-default dropdown-togle" data-toggle="dropdown">
-        <p class="caret"></p>
-      </span>
+      <button class="btn btn-default dropdown-togle" type ="button" data-toggle="dropdown">
+        <span class="caret"></span>
+      </button>
       <ul class="dropdown-menu">
         <%if(userID.toString() === reply._user._id.toString()){%>
         <li><strong onclick="editReply('<%=comment._post%>','<%=comment._id%>','<%=reply._id%>')" data-toggle="modal" data-target="#editBox">edit</strong></li>

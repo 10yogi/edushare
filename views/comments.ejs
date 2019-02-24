@@ -21,14 +21,14 @@
           <div class="col-md-9"><textarea disabled="true" class="form-control col-md-4"><%=comment.text%></textarea></div>
     
             <div class="dropdown">
-              <span class="btn btn-default dropdown-togle" data-toggle="dropdown">
-                <p class="caret"></p>
-              </span>
+              <button class="btn btn-default dropdown-togle" type="button" data-toggle="dropdown">
+                <sapn class="caret"></sapn>
+              </button>
               <ul class="dropdown-menu">
                 <%if(user._id.toString() === comment._user._id.toString()){%>
-                <li><strong onclick="editComment('<%=comment._post%>','<%=comment._id%>')" data-toggle="modal"
+                <li class="divider"><strong onclick="editComment('<%=comment._post%>','<%=comment._id%>')" data-toggle="modal"
                     data-target="#editBox">edit</strong></li>
-                  <li><strong onclick="deleteComment('<%= post.id %>','<%= comment.id %>')">delete</strong></li>
+                  <li class="divider"><strong onclick="deleteComment('<%= post.id %>','<%= comment.id %>')">delete</strong></li>
                 <%}%>
               </ul>
             </div> 
