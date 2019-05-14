@@ -14,7 +14,7 @@ var addLike = (req,res)=>{
     },{new:true})
   }).then(post=>{
     // console.log("result"+post);
-    return res.status(200).render('addlike',{post:post});
+    return res.status(200).json(post);
   })
   .catch(err=>{
     return res.status(400).json(err.message);

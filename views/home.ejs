@@ -117,7 +117,15 @@
 
       </div>
     </div>
- 
+
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+<br />
+<br />
+<br />
+<br />
 
   <h3>new feed : </h3>
   <% if(!data||data.length <=0){%>
@@ -149,13 +157,12 @@
   
     <a href='/posts'><img class=".img-responsive" src='<%=post.imgpath %>' alt="img not found"></a> <br />
 <div id="like<%=post.id%>">
-                    <%if(likedpost[post._id]){%>
-                    <li onclick="unlikepost('<%=post._id%>')" class="fa fa-thumbs-up" style="font-size:30px;color:blue" />
-                    <%}else{%>
-                    <li onclick="likepost('<%=post._id%>')" class="fa fa-thumbs-up" style="font-size:30px;color:black" />
-                    <%}%>
-    <li><strong onclick="showlike('<%=post._id%>')"   data-target="#likeBox"><%=post.likes.length%> people
-        like this</strong></li>
+  <%if(likedpost[post._id]){%>
+    <span onclick="unlikepost('<%=post._id%>')" class="fa fa-heart" style="font-size:30px;color:red" />
+  <%}else{%>
+    <span onclick="likepost('<%=post._id%>')" class="fa fa-heart" style="font-size:30px;color:black" />
+  <%}%>
+    <span onclick="showlike('<%=post._id%>')" data-target="#likeBox"><%=post.likes.length%> who</span>
 </div>
 
 <div id="c<%=post.id%>">

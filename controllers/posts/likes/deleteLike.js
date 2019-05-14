@@ -17,7 +17,7 @@ var deleteLike = (req,res,next)=>{
               )
   }).then( result=>{
     // console.log("deleteresult:"+result);
-    return res.status(200).render('dellike',{post:result});
+    return res.status(200).json(result);
   })
   .catch(err=>{
     // console.log(err);

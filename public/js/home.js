@@ -15,13 +15,26 @@ function showlike(postid){
 
 function likepost(postid){
   $(document).ready(() => {
-    $.post('/posts/' + postid + '/likes', (data) => {
-      //window.alert(data);
-      $('#like' + postid).html(data);
-    }, 'html');
+    $('#like' + postid).children("span.fa").attr({
+      'onclick': "unlikepost('" + postid + "')",
+    }).css({ "color": "red" }).next().text((i, origText) => {
+      return ""+(parseInt(origText)+1)+" who";
+    });;
+    $.post('/posts/' + postid + '/likes',(data)=>{});
   });
 }
 function unlikepost(postid) {
+  $(document).ready(() => {
+    $('#like' + postid).children("span.fa").attr({
+      'onclick': "likepost('" + postid + "')",
+    }).css({"color":"black"}).next().text((i,origText)=>{
+      return ""+(parseInt(origText)-1)+" who";
+    });
+
+   // window.alert(this.response);
+    //$('#like' + postid).html(this.response);
+
+  })
 
   let xhttp = new XMLHttpRequest();
   let url = "/posts/" + postid + "/likes";
@@ -29,14 +42,10 @@ function unlikepost(postid) {
   xhttp.send();
 
   xhttp.onreadystatechange = function () {
+  
     if (this.readyState == 4) {
       if (this.status == 200) {
-          $(document).ready(()=>{
-
-            //window.alert(this.response);
-            $('#like' + postid).html(this.response);
-
-          })
+         
         return;
       } else
         window.alert(this.responseText);
