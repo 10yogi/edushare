@@ -12,3 +12,6 @@ clone repo
 run npm intall --save
 run npm start
 
+
+This project also hosted on cloud: http://edushares.herokuapp.com/
+
